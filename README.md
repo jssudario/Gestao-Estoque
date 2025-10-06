@@ -56,16 +56,16 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
     ```sh
     uvicorn app.main:app --reload
     ```
-    O servidor estará rodando em `http://127.0.0.1:8000`. O arquivo de banco de dados (`banco_de_dados.db`) será criado automaticamente no primeiro acesso.
+    O servidor estará rodando em `http://1227.0.0.1:8000`. O arquivo de banco de dados (`banco_de_dados.db`) será criado automaticamente no primeiro acesso.
 
 5.  **Acesse a Documentação Interativa (Swagger UI):**
     Para ver e testar todos os endpoints, acesse `http://127.0.0.1:8000/docs` no seu navegador.
 
-## Exemplos de Chamadas da API
+## Exemplos de Chamadas (venda, devolução, extrato, resumo)
 
 A seguir estão exemplos de como usar os principais endpoints da API com a ferramenta `curl`.
 
-### 1. Preparação (Crie a categoria e os produtos)
+### 1. Preparação (Crie uma categoria e um produto)
 
 ```sh
 # Criar Categoria "Eletrônicos" (retorna id: 1)
@@ -73,32 +73,41 @@ curl -X 'POST' '[http://127.0.0.1:8000/api/v1/categoria/](http://127.0.0.1:8000/
 -H 'accept: application/json' -H 'Content-Type: application/json' \
 -d '{"nome": "Eletrônicos"}'
 
-# Criar Produto "Televisão 50 polegadas" (retorna id: 1)
+# Criar Produto "Celular" (retorna id: 1)
 curl -X 'POST' '[http://127.0.0.1:8000/api/v1/produtos](http://127.0.0.1:8000/api/v1/produtos)' \
 -H 'accept: application/json' -H 'Content-Type: application/json' \
--d '{"nome": "Televisão 50 polegadas", "preco": 2500.00, "categoria_id": 1, "estoque_minimo": 5}'
+-d '{"nome": "Celular", "preco": 1800, "categoria_id": 1, "estoque_minimo": 10}'
 
-# Dar entrada inicial de 20 unidades da Televisão no estoque
+# Dar entrada inicial de 50 unidades no estoque
 curl -X 'POST' '[http://127.0.0.1:8000/api/v1/estoque/movimentos](http://127.0.0.1:8000/api/v1/estoque/movimentos)' \
 -H 'accept: application/json' -H 'Content-Type: application/json' \
--d '{"produto_id": 1, "quantidade": 20, "tipo": "ENTRADA", "motivo": "Compra fornecedor"}'
+-d '{"produto_id": 1, "quantidade": 50, "tipo": "ENTRADA", "motivo": "Pedido inicial"}'
+```
 
-# Criar Produto "Celular 256GB" (retorna id: 2)
-curl -X 'POST' '[http://127.0.0.1:8000/api/v1/produtos](http://127.0.0.1:8000/api/v1/produtos)' \
--H 'accept: application/json' -H 'Content-Type: application/json' \
--d '{"nome": "Celular 256GB", "preco": 1800.00, "categoria_id": 1, "estoque_minimo": 10}'
+### 2. Exemplos Solicitados
 
-# Dar entrada inicial de 50 unidades do Celular no estoque
-curl -X 'POST' '[http://127.0.0.1:8000/api/v1/estoque/movimentos](http://127.0.0.1:8000/api/v1/estoque/movimentos)' \
+**• Registrar uma Venda (SAÍDA de 5 unidades)**
+```sh
+curl -X 'POST' '[http://127.0.0.1:8000/api/v1/estoque/venda](http://127.0.0.1:8000/api/v1/estoque/venda)' \
 -H 'accept: application/json' -H 'Content-Type: application/json' \
--d '{"produto_id": 2, "quantidade": 50, "tipo": "ENTRADA", "motivo": "Compra fornecedor"}'
+-d '{"produto_id": 1, "quantidade": 5, "motivo": "Cliente 1"}'
+```
 
-# Criar Produto "Microondas 20L" (retorna id: 3)
-curl -X 'POST' '[http://127.0.0.1:8000/api/v1/produtos](http://127.0.0.1:8000/api/v1/produtos)' \
+**• Registrar uma Devolução (ENTRADA de 2 unidades)**
+```sh
+curl -X 'POST' '[http://127.0.0.1:8000/api/v1/estoque/devolucao](http://127.0.0.1:8000/api/v1/estoque/devolucao)' \
 -H 'accept: application/json' -H 'Content-Type: application/json' \
--d '{"nome": "Microondas 20L", "preco": 450.00, "categoria_id": 1, "estoque_minimo": 8}'
+-d '{"produto_id": 1, "quantidade": 2, "motivo": "Cliente devolveu produto"}'
+```
 
-# Dar entrada inicial de 30 unidades do Microondas no estoque
-curl -X 'POST' '[http://127.0.0.1:8000/api/v1/estoque/movimentos](http://127.0.0.1:8000/api/v1/estoque/movimentos)' \
--H 'accept: application/json' -H 'Content-Type: application/json' \
--d '{"produto_id": 3, "quantidade": 30, "tipo": "ENTRADA", "motivo": "Compra fornecedor"}'
+**• Consultar o Extrato do produto**
+```sh
+curl -X 'GET' '[http://127.0.0.1:8000/api/v1/estoque/extrato/1](http://127.0.0.1:8000/api/v1/estoque/extrato/1)' \
+-H 'accept: application/json'
+```
+
+**• Obter o Resumo do Estoque**
+```sh
+curl -X 'GET' '[http://127.0.0.1:8000/api/v1/estoque/resumo](http://127.0.0.1:8000/api/v1/estoque/resumo)' \
+-H 'accept: application/json'
+```
