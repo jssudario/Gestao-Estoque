@@ -1,5 +1,12 @@
 # Projeto de Gestão de Estoques - API
 
+**Sistemas de Informação – Desenvolvimento de Sistemas Web I**  
+**Aluno(a):** Julia Sudário Silva  
+**RA:** 007217  
+
+**Aluno(a):** Adryan Ryan Santos
+**RA:** 007194  
+
 API desenvolvida em FastAPI para a gestão de produtos, categorias e controle de estoque, como parte da disciplina de Desenvolvimento de Sistemas WEB I. A aplicação permite o registro de movimentações de estoque, cálculo de saldo em tempo real e a implementação de operações de negócio como vendas e devoluções.
 
 ## Funcionalidades
