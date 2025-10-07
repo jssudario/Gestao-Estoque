@@ -1,7 +1,5 @@
 from sqlalchemy.orm import Session
-# tabela categoria
 from app.models.categoria import Categoria
-# contrato da API
 from app.schemas.categoria import CategoriaCreate, CategoriaSchema
 
 def create(db: Session, payload: CategoriaCreate) -> Categoria:
