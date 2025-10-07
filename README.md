@@ -2,8 +2,6 @@
 
 **Sistemas de Informação – Desenvolvimento de Sistemas Web I**  
 
-**[VÍDEO EM FUNCIONAMENTO](https://www.youtube.com/watch?v=AhR_AQO6P4w)**
-
 **Aluno(a):** Julia Sudário Silva  
 **RA:** 007217  
 
@@ -11,6 +9,8 @@
 **RA:** 007194  
 
 API desenvolvida em FastAPI para a gestão de produtos, categorias e controle de estoque, como parte da disciplina de Desenvolvimento de Sistemas WEB I. A aplicação permite o registro de movimentações de estoque, cálculo de saldo em tempo real e a implementação de operações de negócio como vendas e devoluções.
+
+**[VÍDEO EM FUNCIONAMENTO](https://www.youtube.com/watch?v=AhR_AQO6P4w)**
 
 ## Funcionalidades
 
