@@ -5,6 +5,7 @@ from app.schemas.produtos import ProdutoCreate
 from app.models.produtos import Produto
 
 def criar_produto(db: Session, payload: ProdutoCreate) -> Produto:
+    # validações de negócio
     if payload.preco <= 0:
         raise ValueError("Preço deve ser maior que zero.")
     return repo.create(db, payload)
