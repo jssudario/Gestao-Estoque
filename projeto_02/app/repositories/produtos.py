@@ -1,8 +1,6 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-# tabela produto
 from app.models.produtos import Produto
-# contrato da API
 from app.schemas.produtos import ProdutoCreate, ProdutoUpdate, ProdutoSchema
 from app.models.categoria import Categoria
 
