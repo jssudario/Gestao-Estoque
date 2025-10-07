@@ -2,7 +2,7 @@
 
 **Sistemas de Informação – Desenvolvimento de Sistemas Web I**  
 
-[VÍDEO EM FUNCIONAMENTO](https://www.youtube.com/watch?v=AhR_AQO6P4w)
+**[VÍDEO EM FUNCIONAMENTO](https://www.youtube.com/watch?v=AhR_AQO6P4w)**
 
 **Aluno(a):** Julia Sudário Silva  
 **RA:** 007217  
