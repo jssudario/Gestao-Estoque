@@ -1,4 +1,3 @@
-# app/schemas/produtos.py
 from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 from .categoria import CategoriaSchema
